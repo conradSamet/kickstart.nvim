@@ -133,6 +133,8 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+vim.opt.wrap = false
+
 -- configure the tab size
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
@@ -142,8 +144,8 @@ vim.opt.expandtab = false
 -- Sets how neovim will display certain whitespace in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-vim.opt.list = false
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.list = true
+vim.opt.listchars = { trail = '·', eol = '↵' }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
