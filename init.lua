@@ -135,11 +135,14 @@ vim.opt.splitbelow = true
 
 -- configure the tab size
 vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.autoindent = true
+vim.opt.expandtab = false
 
 -- Sets how neovim will display certain whitespace in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-vim.opt.list = true
+vim.opt.list = false
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
@@ -544,6 +547,7 @@ require('lazy').setup {
         -- rust_analyzer = {},
         phpactor = {},
         intelephense = {},
+        tailwindcss = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -594,6 +598,7 @@ require('lazy').setup {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format lua code
+        'prettier',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -627,7 +632,10 @@ require('lazy').setup {
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
+        javascript = { { 'prettierd', 'prettier' } },
+        javascriptreact = { { 'prettierd', 'prettier' } },
+        typescript = { { 'prettierd', 'prettier' } },
+        typescriptreact = { { 'prettierd', 'prettier' } },
       },
     },
   },
@@ -769,10 +777,30 @@ require('lazy').setup {
   },
 
   {
-    'nvim-tree/nvim-tree.lua',
+    'windwp/nvim-autopairs',
+    -- Optional dependency
+    dependencies = { 'hrsh7th/nvim-cmp' },
     config = function()
-      require('nvim-tree').setup {
-        vim.keymap.set('n', '<C-e>', '<cmd>NvimTreeFindFile<CR>', { desc = '[N]vim [T]ree' }),
+      require('nvim-autopairs').setup {}
+      -- If you want to automatically add `(` after selecting a function or method
+      local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+      local cmp = require 'cmp'
+      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+    end,
+  },
+
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    version = '*',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
+    },
+    config = function()
+      require('neo-tree').setup {
+        close_if_last_window = true,
+        vim.keymap.set('n', '<C-e>', '<cmd>Neotree reveal_file=%:p<CR>', { desc = 'Open Neotree on current file' }),
       }
     end,
   },
@@ -848,7 +876,7 @@ require('lazy').setup {
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   require 'kickstart.plugins.debug',
-  require 'kickstart.plugins.indent_line',
+  -- require 'kickstart.plugins.indent_line',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
