@@ -133,7 +133,7 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
-vim.opt.wrap = false
+vim.opt.wrap = true
 
 -- configure the tab size
 vim.opt.tabstop = 2
