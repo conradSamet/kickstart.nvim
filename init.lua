@@ -145,7 +145,7 @@ vim.opt.expandtab = false
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { trail = '·', eol = '↵' }
+vim.opt.listchars = { trail = '·', eol = '↵', tab = '▸ ' }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
@@ -626,7 +626,7 @@ require('lazy').setup {
     opts = {
       notify_on_error = false,
       format_on_save = {
-        timeout_ms = 500,
+        timeout_ms = 1000,
         lsp_fallback = true,
       },
       formatters_by_ft = {
