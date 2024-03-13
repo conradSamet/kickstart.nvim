@@ -297,6 +297,7 @@ require('lazy').setup({
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
         ['<leader>h'] = { name = '[H]arpoon', _ = 'which_key_ignore' },
+        ['<leader>n'] = { name = '[N]eoTree', _ = 'which_key_ignore' },
       }
     end,
   },
@@ -798,23 +799,6 @@ require('lazy').setup({
       cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
     end,
   },
-
-  {
-    'nvim-neo-tree/neo-tree.nvim',
-    version = '*',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-      'MunifTanjim/nui.nvim',
-    },
-    config = function()
-      require('neo-tree').setup {
-        close_if_last_window = true,
-        vim.keymap.set('n', '<C-e>', '<cmd>Neotree reveal_file=%:p<CR>', { desc = 'Open Neotree on current file' }),
-      }
-    end,
-  },
-
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
