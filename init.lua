@@ -361,12 +361,17 @@ require('lazy').setup({
         --  All the info you're looking for is in `:help telescope.setup()`
         --
         defaults = {
-          file_ignore_patterns = { 'node_modules', '.git', '.cache' },
+          file_ignore_patterns = { 'node_modules' },
           --   mappings = {
           --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
           --   },
         },
-        -- pickers = {}
+        pickers = {
+          find_files = {
+            hidden = true,
+            no_ignore = true,
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -649,6 +654,19 @@ require('lazy').setup({
         javascriptreact = { { 'prettierd', 'prettier' } },
         typescript = { { 'prettierd', 'prettier' } },
         typescriptreact = { { 'prettierd', 'prettier' } },
+        php = { 'php' },
+      },
+      formatters = {
+        php = {
+          command = 'php-cs-fixer',
+          args = {
+            'fix',
+            '$FILENAME',
+            '--config=' .. os.getenv 'HOME' .. '/.tools/php-cs-fixer.php',
+            '--allow-risky=yes', -- if you have risky stuff in config, if not you dont need it.
+          },
+          stdin = false,
+        },
       },
     },
   },
