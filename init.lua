@@ -371,6 +371,11 @@ require('lazy').setup({
             hidden = true,
             no_ignore = true,
           },
+          live_grep = {
+            additional_args = function(opts)
+              return { '-g', '!*.min.js', '-g', '!*.min.css' }
+            end,
+          },
         },
         extensions = {
           ['ui-select'] = {
