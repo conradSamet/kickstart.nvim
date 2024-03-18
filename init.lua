@@ -22,6 +22,7 @@
 
 What is Kickstart?
 
+
   Kickstart.nvim is *not* a distribution.
 
   Kickstart.nvim is a starting point for your own configuration.
