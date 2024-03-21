@@ -363,6 +363,7 @@ require('lazy').setup({
         --
         defaults = {
           file_ignore_patterns = { 'node_modules' },
+          -- path_display = { 'smart' },
           --   mappings = {
           --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
           --   },
@@ -800,12 +801,35 @@ require('lazy').setup({
       local lazy_status = require 'lazy.status'
 
       lualine.setup {
+        options = {
+          globalstatus = true,
+        },
         sections = {
+          lualine_c = {},
           lualine_x = {
             { lazy_status.updates, cond = lazy_status.has_updates, color = { fg = '#ff9e64' } },
             { 'encoding' },
             { 'filetype' },
             { 'filesize' },
+          },
+          lualine_z = { 'os.date("%H:%M")' },
+        },
+        winbar = {
+          lualine_a = {
+            {
+              'filename',
+              path = 1,
+              file_status = true,
+            },
+          },
+        },
+        inactive_winbar = {
+          lualine_a = {
+            {
+              'filename',
+              path = 1,
+              file_status = true,
+            },
           },
         },
       }
