@@ -12,7 +12,7 @@ return {
       offsets = {
         {
           filetype = 'neo-tree',
-          text = 'File Explorer',
+          text = 'Neo-Tree',
           text_align = 'center',
         },
       },
@@ -28,8 +28,8 @@ return {
     end
 
     -- Tab/Buffers navigation
-    map('n', '<A-,>', ':tabnext<CR>', opts, { desc = { '[T]ab Next' } })
-    map('n', '<A-.>', ':tabprevious<CR>', opts, { desc = { '[T]ab Previous' } })
+    map('n', '<A-.>', ':tabnext<CR>', opts, { desc = { '[T]ab Next' } })
+    map('n', '<A-,>', ':tabprevious<CR>', opts, { desc = { '[T]ab Previous' } })
     map('n', '<A-<>', ':tabmove -1<CR>', opts, { desc = { '[T]ab Move Previous' } })
     map('n', '<A->>', ':tabmove +1<CR>', opts, { desc = { '[T]ab Move Next' } })
     map('n', '<A-c>', ':tabclose<CR>', opts, { desc = { '[T]ab Close' } })
@@ -39,5 +39,7 @@ return {
     map('n', '<leader>bd', ':bdelete<CR>', opts, { desc = { '[B]uffer [D]elete' } })
     map('n', '<leader>bn', ':bnext<CR>', opts, { desc = { '[B]uffer [N]ext' } })
     map('n', '<leader>bp', ':bprevious<CR>', opts, { desc = { '[B]uffer [P]revious' } })
+
+    require 'custom.utils.bufferline'
   end,
 }
